@@ -44,3 +44,5 @@ Conclusion:
 
 A system which has  a user-friendly platform, transparent and easy to use for everyone aims to change the way household workers work. A client can book a worker for his/her household work without going out and finding someone. Also it does not guarantee that man is skilled or not.  A worker who does not know where someone needs him. So, this platform  can help a client to find workers(intermediate or skilled) from many people and a worker to find many jobs nearby.
 
+Collaborated with @shahin-dev
+
