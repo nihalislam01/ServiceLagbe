@@ -1,0 +1,31 @@
+.posts {
+    padding: 20px;
+}
+.post {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.workers {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 20px;
+    border-radius: 10px;
+}
+.worker {
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+.horizontally-aligned button {
+    margin-left: 10px;
+}

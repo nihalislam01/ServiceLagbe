@@ -1,0 +1,10 @@
+.notifications {
+    padding: 20px;
+}
+.notification {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}

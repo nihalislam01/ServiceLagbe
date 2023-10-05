@@ -1,0 +1,43 @@
+body {
+    background-color: #f1faee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    background-color: #e9edc9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+.company-name {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.form-container {
+    padding: 20px;
+}
+.btn-forgot-password {
+    text-align: center;
+}
+.form-group label {
+    color: #8d99ae;
+}
+.create-account-button a {
+    color: #f1faee; 
+    text-decoration: none;
+}
+.message-box {
+    background-color: #ccd5ae; 
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}

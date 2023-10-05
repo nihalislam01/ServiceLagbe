@@ -1,0 +1,37 @@
+.workers {
+    padding: 20px;
+    overflow: auto;
+}
+.worker {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.add-to-post-box {
+    display: none;
+    position: absolute;
+    background-color: #828282;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    text-align: left;
+    z-index: 1;
+    padding: 10px;
+    float: right;
+}
+.add-to-post-box button {
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    }
+.ellipsis {
+    background: none;
+    border: none;
+}
+.ellipsis:hover {
+    color: rgb(0, 0, 0);
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" th:href="@{/css/translate_nav_style.css}">
+    <link rel="stylesheet" th:href="@{/css/otp.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="message-box" th:if="${message != null}">
+            [[${message}]]
+        </div>
+        <h1>OTP Verification</h1>
+        <form th:action="@{verify-otp}" method="post" role="form" th:object="${verificationOTP}">
+            <p>Please enter the OTP sent to your mobile number.</p>
+            <div id="otp-container">
+                <input th:field="*{d1}" type="text" class="otp-input" maxlength="1">
+                <input th:field="*{d2}" type="text" class="otp-input" maxlength="1">
+                <input th:field="*{d3}" type="text" class="otp-input" maxlength="1">
+                <input th:field="*{d4}" type="text" class="otp-input" maxlength="1">
+                <input th:field="*{d5}" type="text" class="otp-input" maxlength="1">
+                <input th:field="*{d6}" type="text" class="otp-input" maxlength="1">
+            </div>
+            <button type="submit">Verify</button>
+            <div id="translate"></div>
+        </form>
+    </div>
+</body>
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+<script th:src="@{/javascript/language.js}"></script>
+</html>

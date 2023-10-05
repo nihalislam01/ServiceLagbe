@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/worker-nav-bar-side-bar-content.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/translate_nav_style.css}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container customize-nav">
+            <h2><a class="brand" href="dashboard">Service Lagbe</a></h2>
+            <form th:action="@{dashboard}" class="searchbar">
+                <div class="horizontally-aligned">
+                    <input type="seach" class="form-control" id="click-search" name="keyword" th:value="${keyword}" placeholder="Search for work">
+                    <button type="submit" class="magnifying" id="magnifying" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="dashboard"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="profile"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="notification"><i class="fa-solid fa-bell"></i> Notification</a></li>
+            <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></span></li>
+        </ul>
+    </div>
+
+    <div class="container mt-3 content">
+        <h1>Hello, [[${user.getFirstName()}]] [[${user.getLastName()}]].</h1>
+        <div class="posts" th:if="${projects != null}">
+            <h2>Available posts for apply</h2>
+            <div class="post" th:each="project : ${projects}">
+                <div>
+                    <h5>[[${project.getName()}]]</h5>
+                    <p>Location: [[${project.getLocation()}]]</p>
+                    <div class="horizontally-aligned">
+                        <p>Looking For:</p>
+                        <p th:each="worker : ${project.getLookingFor()}" >[[${worker}]]</p>
+                    </div>
+                </div>
+                <form th:action="@{apply}" >
+                    <button type="submit" class="btn" name="id" th:value="${project.getId()}" >Apply</button>
+                </form>
+            </div>
+        </div>
+        <div id="translate"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+<script th:src="@{/javascript/language.js}"></script>
+<script th:src="@{/javascript/nav-bar.js}"></script>
+</html>
