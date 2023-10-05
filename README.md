@@ -1,4 +1,4 @@
-# ServiceLagbe-JavaFest
+# ServiceLagbe
 Service Lagbe is a web based project. It is a service platform where both who are looking for work or in search for service can use this web application. 
 
 Objectives:
