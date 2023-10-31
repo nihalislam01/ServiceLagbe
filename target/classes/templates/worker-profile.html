@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/worker-nav-bar-side-bar-content.css}">
+    <link rel="stylesheet" th:href="@{/css/worker-profile.css}">
+    <link rel="stylesheet" th:href="@{/css/translate_nav_style.css}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container customize-nav">
+            <h2><a class="brand" href="dashboard">Service Lagbe</a></h2>
+            <form th:action="@{dashboard}" class="searchbar">
+                <div class="horizontally-aligned">
+                    <input type="seach" class="form-control" id="click-search" name="keyword" th:value="${keyword}" placeholder="Search for work">
+                    <button type="submit" class="magnifying" id="magnifying" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="dashboard"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="profile"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="notification"><i class="fa-solid fa-bell"></i> Notification</a></li>
+            <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></span></li>
+        </ul>
+    </div>
+
+    <div class="container mt-3 content">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>[[${user.getFirstName()}]] [[${user.getLastName()}]]</h2>
+                <p>Rating [[${user.getRating()}]] ([[${user.getPersonRated()}]])</p>
+            </div>
+            <div class="col-md-6 profile-info">
+                <div>
+                    Number: [[${user.getNumber()}]]
+                    <button class="btn btn-link"><a href="verify-otp" >Change</a></button>
+                </div>
+                <div>
+                    Location: [[${user.getLocation()}]]
+                </div>
+                <div class="horizontally-aligned">
+                    <p>Working as:</p>
+                    <p th:each="post : ${user.getPosts()}">[[${post}]]</p>
+                </div>
+                <div class="horizontally-aligned-availability">
+                    <p>Set availability</p>
+                    <label class="switch">
+                        <input th:if="${availability}" type="checkbox" id="toggle" checked>
+                        <input th:if="${!availability}" type="checkbox" id="toggle" unchecked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div id="customAlert">
+            <div class="alert-content">
+                <p id="onAlert">If you on this button you will be available on search list</p>
+                <p id="offAlert">If you off this button you won't be available on search list</p>
+                <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+                <a href="change-availability" ><button id="okButton" class="btn btn-primary">OK</button></a>
+            </div>
+        </div>
+        <div id="translate"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+<script th:src="@{/javascript/language.js}"></script>
+<script th:src="@{/javascript/nav-bar.js}"></script>
+<script th:src="@{/javascript/worker-profile.js}"></script>
+</html>

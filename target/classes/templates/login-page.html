@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/translate_nav_style.css}">
+</head>
+    <body>
+        <div class="container login-container">
+            <div class="message-box" th:if="${message != null}">
+                [[${message}]]
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="company-name">Service Lagbe</h2>
+                </div>
+                <div class="col-md-6 form-container">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label for="username">Email or Number</label>
+                            <input type="text" class="form-control" name="username" placeholder="Enter your email or number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-link btn-forgot-password"><a href="forget-password">Forgot Password?</a></button>
+                    </div>
+                    <div class="row create-account-button">
+                        <div class="col-md-6">
+                            <a href="register/worker" ><button type="button" class="btn btn-success btn-block">Create a Working Account</button></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="register/general" ><button type="button" class="btn btn-success btn-block">Create a General Account</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="translate"></div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script th:src="@{/javascript/language.js}"></script>
+</html>

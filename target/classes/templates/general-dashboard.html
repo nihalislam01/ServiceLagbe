@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/general-nav-bar-side-bar-content.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/translate_nav_style.css}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container customize-nav">
+            <h2><a class="brand" href="dashboard">Service Lagbe</a></h2>
+            <form th:action="@{worker}" class="searchbar">
+                <div class="horizontally-aligned">
+                    <input type="seach" class="form-control" id="click-search" name="keyword" th:value="${keyword}" placeholder="Search for service">
+                    <button type="submit" class="magnifying" id="magnifying" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+            <button class="btn btn-primary create-post-button" data-toggle="modal" data-target="#createPostModal">Create Post</button>
+        </div>
+    </nav>
+
+    
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="dashboard"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="profile"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="notification"><i class="fa-solid fa-bell"></i> Notification</a></li>
+            <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></span></li>
+        </ul>
+    </div>
+
+    <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{add-project}" method="post" th:object="${project}">
+                        <div class="form-group">
+                            <input th:field="*{name}" type="text" class="form-control" name="projectName" placeholder="Post Title" required>
+                        </div>
+                        <div class="form-group">
+                            <input th:field="*{location}" class="form-control" type="text" name="location" placeholder="Location" required>
+                        </div>
+                        <div id="selectedItemsBox" class="form-group selected-items-box"></div>
+                        <div class="form-group dropdown">
+                            <button type="button" class="btn btn-block form-control dropdownButton" id="dropdownButton" >Looking For</button>
+                        </div>
+                        <div class="form-group dropdown-content col-md-11">
+                            <label class="checkbox-label" th:each="post : ${posts}" >
+                                <input type="checkbox" th:field="*{lookingFor}" th:value="${post}" value="${post}" class="form-control check-box" name="post" onclick="toggleCheckbox(this)"> [[${post}]]
+                            </label>
+                        </div>
+                        <div class="form-group align-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 content">
+        <div class="workers" th:if="${workers != null}">
+            <div class="worker" th:each="worker : ${workers}">
+                <div class="horizontally-aligned">
+                    <p>[[${worker.getRating()}]]([[${worker.getPersonRated()}]]) [[${worker.getFirstName()}]]</p>
+                    <p>Location: [[${worker.getLocation()}]]</p>
+                    <p>Contact info: [[${worker.getNumber()}]]</p>
+                    <p>Working as:</p>
+                    <p th:each="worker : ${worker.getPosts()}" >[[${worker}]]</p>
+                </div>
+            </div>
+        </div>
+        <h1>Hello, [[${user.getFirstName()}]] [[${user.getLastName()}]].</h1>
+        <div class="posts" th:if="${projects != null}">
+            <h2>Your Posts</h2>
+            <div class="post" th:each="project : ${projects}">
+                <div>
+                    <h5>[[${project.getName()}]]</h5>
+                    <p>Location: [[${project.getLocation()}]]</p>
+                    <div class="horizontally-aligned">
+                        <p>Looking For:</p>
+                        <p th:each="worker : ${project.getLookingFor()}" >[[${worker}]]</p>
+                    </div>
+                </div>
+                <div class="horizontally-aligned">
+                    <form th:action="@{project-profile}" method="post">
+                        <button type="submit" class="btn btn-secondary" name="id" th:value="${project.getId()}" >See post details</button>
+                    </form>
+                    <form th:action="@{delete-project}" method="post">
+                        <button type="submit" class="btn btn-dark" name="id" th:value="${project.getId()}" >Delete post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="translate"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+<script th:src="@{/javascript/language.js}"></script>
+<script th:src="@{/javascript/nav-bar.js}"></script>
+</html>
