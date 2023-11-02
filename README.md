@@ -3,12 +3,10 @@ User Guide:
 
 Run the web application on your device by following the steps below.
 
-Download Docker Desktop and write these docker commands in your CLI
+Download Docker Desktop and write or copy paste these docker commands in your CLI
 <pre><code>docker pull nihalislam/servicelagbe-servicelagbe</code></pre>
 <pre><code>docker pull mysql:5.7</code></pre>
-You can create any network name you prefer instead of servicelagbe-net.
 <pre><code>docker network create servicelagbe-net</code></pre>
-You can use any MYSQL_ROOT_PASSWORD and the network should match the network you have just created. Other commands must be the same as given.
 <pre><code>docker run --detach --network servicelagbe-net --name servicelagbedb --env MYSQL_ROOT_PASSWORD=1234 --env MYSQL_USERNAME=servicelagbe --env MYSQL_PASSWORD=servicelagbe --env MYSQL_DATABASE=servicelagbedb --publish 3306:3306 mysql:5.7</code></pre>
 <pre><code>docker run --network servicelagbe-net -p 8080:8080 --name servicelagbe nihalislam/servicelagbe-servicelagbe</code></pre>
 
