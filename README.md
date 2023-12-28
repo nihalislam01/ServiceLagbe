@@ -6,7 +6,7 @@ Download Docker Desktop and write or copy paste these docker commands in your CL
 <pre><code>docker pull nihalislam/servicelagbe-servicelagbe</code></pre>
 <pre><code>docker pull mysql:8-oracle</code></pre>
 <pre><code>docker network create servicelagbe-net</code></pre>
-<pre><code>docker run --detach --network servicelagbe-net --name servicelagbedb --env MYSQL_ROOT_PASSWORD=servicelagbe --env MYSQL_USERNAME=root --env MYSQL_PASSWORD=servicelagbe --env MYSQL_DATABASE=servicelagbedb --publish 3306:3306 mysql:5.7</code></pre>
+<pre><code>docker run --detach --network servicelagbe-net --name servicelagbedb --env MYSQL_ROOT_PASSWORD=servicelagbe --env MYSQL_USERNAME=root --env MYSQL_PASSWORD=servicelagbe --env MYSQL_DATABASE=servicelagbedb --publish 3306:3306 mysql:8-oracle</code></pre>
 <pre><code>docker run --network servicelagbe-net -p 8080:8080 --name servicelagbe nihalislam/servicelagbe-servicelagbe</code></pre>
 
 After succesfully running, search this url in browser
