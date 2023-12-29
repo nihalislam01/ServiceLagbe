@@ -49,10 +49,14 @@ public class RegistrationController {
         WorkerUser user = workerUserService.register(workerRegistrationRequest);
         if (user.getNumber()==null) {
             model.addAttribute("message", "Number already exists.");
+            System.out.println("Hello");
             return "worker-register";
         }
-        publisher.publishEvent(new OTPRegistrationCompleteEvent(user));
-        return "otp-verification";
+//         Twilio Trial is Over.
+//         publisher.publishEvent(new OTPRegistrationCompleteEvent(user));
+//         return "otp-verification";
+        model.addAttribute("message","Registration Complete. Please login.");
+        return "worker-register";
     }
 
     @GetMapping("/general")

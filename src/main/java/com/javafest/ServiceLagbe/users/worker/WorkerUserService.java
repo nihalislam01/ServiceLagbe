@@ -30,6 +30,7 @@ public class WorkerUserService implements IWorkerUserService {
         newUser.setRating("0");
         newUser.setPersonRated(0);
         newUser.setTotalRating(0);
+        newUser.setEnable(true);
         newUser.setFirstName(request.firstName());
         newUser.setLastName(request.lastName());
         newUser.setPin(passwordEncoder.encode(request.pin()));

@@ -46,7 +46,7 @@ public class OTPRegistrationCompleteEventListener implements ApplicationListener
     public void sendVerificationMessage(String verificationOTP) throws MessagingException, UnsupportedEncodingException {
         PhoneNumber to = new PhoneNumber("+88" + theUser.getNumber());
         PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
-        String otpMessage = "Dear Customer , Your OTP is ##" + verificationOTP + "##. Use this Passcode to complete your transaction. Thank You.";
+        String otpMessage = "Dear Customer , Your OTP is " + verificationOTP + ". Use this Passcode to complete your transaction. Thank You.";
         Message message = Message
                 .creator(to, from,
                         otpMessage)
